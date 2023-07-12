@@ -1,0 +1,8 @@
+debian/*.desktop usr/share/applications/
+debian/application-registry/*.applications usr/share/application-registry/
+debian/mime-info/*.keys usr/share/mime-info/
+debian/mime-info/*.mime usr/share/mime-info/
+debian/pixmaps/*.png usr/share/pixmaps/
+debian/pixmaps/*.svg usr/share/pixmaps/
+debian/pixmaps/*.xpm usr/share/pixmaps/
+debian/love.conf usr/lib/binfmt.d/

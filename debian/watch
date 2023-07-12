@@ -1,0 +1,2 @@
+version=4
+https://github.com/love2d/love/releases/ .*/love@ANY_VERSION@-linux-src@ARCHIVE_EXT@

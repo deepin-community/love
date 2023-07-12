@@ -1,0 +1,8 @@
+application/x-love-game
+        description: Löve Game
+        [es]description: Juego de Löve
+        icon_filename: love-game-64.png
+        default_action_type=application
+        short_list_application_ids_for_novice_user_level=love
+        short_list_application_ids_for_intermediate_user_level=love
+        short_list_application_ids_for_advanced_user_level=love

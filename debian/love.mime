@@ -1,0 +1,1 @@
+application/x-love-game; love %s; test=test -n "$DISPLAY"; description=Löve Game; nametemplate=%s.love; priority=2
