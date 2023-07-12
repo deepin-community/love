@@ -1,15 +1,49 @@
-Source: template-repository
-Section: unknown
+Source: love
+Section: interpreters
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Maintainer: Debian Games Team <pkg-games-devel@lists.alioth.debian.org>
+Uploaders:
+ Miriam Ruiz <miriam@debian.org>
+Build-Depends:
+ debhelper-compat (= 13),
+ libfreetype6-dev,
+ liblua5.1-0-dev,
+ libluajit-5.1-dev [!alpha !ia64 !ppc64el !riscv64 !sh4 !s390x],
+ libmodplug-dev,
+ libmpg123-dev,
+ libogg-dev,
+ libopenal-dev,
+ libphysfs-dev,
+ libsdl2-dev,
+ libstb-dev,
+ libtheora-dev,
+ libtool,
+ libvorbis-dev,
+ lua5.2 | lua5.1,
+ pkg-config,
+ zip,
+ zlib1g-dev
+Standards-Version: 4.6.1
+Rules-Requires-Root: no
+Homepage: https://love2d.org/
+Vcs-Git: https://salsa.debian.org/games-team/love.git
+Vcs-Browser: https://salsa.debian.org/games-team/love
 
-Package: template-repository
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Package: love
+Architecture: alpha any-i386 any-amd64 arm64 armel armhf ia64 mips64el mipsel ppc64el riscv64 sh4 x32
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends}
+Recommends:
+ binfmt-support | systemd
+Description: 2D game development framework based on Lua and OpenGL
+ LÖVE was created to be a user-friendly engine in which simple (or
+ complicated) games could be made without having extensive knowledge
+ of system or graphics functions and without having to dedicate time
+ towards developing the same engine features time and time again.
+ .
+ Developed with cross-platform implementation in mind, it utilizes the
+ latest open source libraries to deliver a similar game experience,
+ independent of operating system. By relying on the Lua scripting language
+ for game-specific programming, it allows even the novice game creator to
+ quickly and efficiently develop an idea into a fully working game.

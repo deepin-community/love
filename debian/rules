@@ -1,4 +1,32 @@
 #!/usr/bin/make -f
 
+include /usr/share/dpkg/pkg-info.mk
+include /usr/share/dpkg/buildtools.mk
+
+#export DH_VERBOSE=1
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+# does not link without pthread
+# undefined reference to symbol 'pthread_sigmask@@GLIBC_2.2.5'
+export DEB_LDFLAGS_MAINT_APPEND = -lpthread
+
+LUA_IMPL = $(shell $(PKG_CONFIG) luajit && echo luajit || echo lua)
+
 %:
 	dh $@
+
+override_dh_auto_configure:
+	ln -sf /usr/include/stb/stb_image.h src/libraries/stb/stb_image.h
+	dh_auto_configure -- --disable-shared --enable-static --with-lua=$(LUA_IMPL)
+	# rebuild C++ header files:
+	cd src/scripts/ && lua auto.lua boot nogame
+
+override_dh_auto_install:
+	# skip dh_auto_install as we install all files via dh_install
+
+override_dh_install:
+	dh_install
+	install -m755 -D src/love debian/love/usr/bin/love-$(DEB_VERSION_UPSTREAM)
+	install -m644 -D debian/love.binfmt debian/love/usr/share/binfmts/love
+	install -m644 -D platform/unix/love.6 debian/love/usr/share/man/man6/love-$(DEB_VERSION_UPSTREAM).6

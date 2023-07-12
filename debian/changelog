@@ -1,5 +1,289 @@
-template-repository (1.0-1) unstable; urgency=medium
+love (11.4-1) unstable; urgency=medium
 
-  * Initial release
+  * Team upload.
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+  [ Alexandre Detiste ]
+  * Remove luajit build dependency on ppc64el. (Closes: #1011300)
+
+  [ Michael Biebl ]
+  * Add support for systemd-binfmt. (Closes: #1012363)
+
+  [ Reiner Herrmann ]
+  * New upstream release.
+  * Update versions in postinst/prerm.
+  * Bump Standards-Version to 4.6.1.
+  * Bump debhelper compat version to 13.
+  * Point d/watch to github, as bitbucket is no longer used.
+
+ -- Reiner Herrmann <reiner@reiner-h.de>  Thu, 09 Jun 2022 11:44:50 +0200
+
+love (11.3-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+  * Bump Standards-Version to 4.5.0.
+    - declare that d/rules does not require root
+  * Update debhelper compat to 12.
+  * Drop remaining big-endian architectures. (Closes: #906925)
+  * Build with stb_image.h from libstb-dev instead of embedded copy.
+    (Closes: #949634)
+  * Update copyrights.
+  * Remove references to removed -doc package.
+
+ -- Reiner Herrmann <reiner@reiner-h.de>  Tue, 04 Feb 2020 23:58:08 +0100
+
+love (11.1-2) unstable; urgency=medium
+
+  * Team upload.
+  * Remove luajit dependency restriction on hurd-i386 and kfreebsd-amd64.
+  * Restore check for lua implementation for architectures without luajit.
+  * Drop big-endian architectures as the hash module requires little-endian.
+  * Enable also non-release little-endian architectures.
+  * Drop unused build dependencies.
+
+ -- Reiner Herrmann <reiner@reiner-h.de>  Sat, 04 Aug 2018 16:05:52 +0200
+
+love (11.1-1) unstable; urgency=medium
+
+  [ Reiner Herrmann, Alexandre Detiste ]
+  * Team upload.
+  * New upstream version 11.1. (Closes: #830876, #815170))
+    - The package builds from source again. (Closes: #873329)
+  * Fix FTCBFS by switching to dh sequencer. (Closes: #894041)
+  * Bump Standards-Version to 4.2.0
+  * Drop scripts_source.patch; included in upstream tarball
+  * Remove LDADD section from src/Makefile.am patch.
+    It was no longer building as it couldn't find a target '.libs/liblove.a'.
+  * Convert to dh-based build
+  * Disable -doc package for now.
+    It's currently unclear to me where the -doc and -demos tarball
+    is coming from.
+  * Since the -doc package is disabled and the patch for upstream's manpage was
+    accepted, this (Closes: #892917)
+  * The mimelnk files are no longer installed. (Closes: #875525)
+  * Remove unused lintian-override
+  * Install files only via dh_install; otherwise it installs static library too
+  * Add build dependency libtheora-dev
+
+  [ Markus Koschany ]
+  * Remove autoconf and automake from B-D because compat 11 provides them
+    automatically.
+
+ -- Markus Koschany <apo@debian.org>  Fri, 03 Aug 2018 12:09:05 +0200
+
+love (0.9.1-4) unstable; urgency=medium
+
+  * Team upload.
+  * Drop README.source because source format 3.0 uses quilt by default.
+  * wrap-and-sort -sab.
+  * Use compat level 9 and require debhelper >= 9.
+  * Declare compliance with Debian Policy 3.9.8.
+  * Use secure Vcs-Browser URL.
+  * Drop love-dbg binary package and use the automatic -dbgsym package instead.
+  * Remove spurious libmng-dev build-dependency.
+    Thanks to Moritz Muehlenhoff for the report. (Closes: #757171)
+  * Build demos in arch-indep target. (Closes: #806657)
+  * Use default xz compression for the debian tarball.
+  * Fix Lintian warnings in debian/copyright.
+  * debian/rules: Fix Lintian error privacy-breach-google-plus.
+
+ -- Markus Koschany <apo@debian.org>  Wed, 03 Aug 2016 22:37:52 +0200
+
+love (0.9.1-3) unstable; urgency=medium
+
+  * Team upload.
+  * Add Breaks+Replaces relation against older versions of love to fix
+    wheezy -> jessie upgrades. (Closes: #768206)
+
+ -- Vincent Cheng <vcheng@debian.org>  Thu, 13 Nov 2014 23:17:35 -0800
+
+love (0.9.1-2) unstable; urgency=medium
+
+  * Don't use luajit for architectures where it is not supported:
+    hurd-i386 !kfreebsd-amd64 !s390x
+  * Moved demos to love-doc package to make love package lighter
+
+ -- Miriam Ruiz <miriam@debian.org>  Mon, 28 Apr 2014 22:34:08 +0200
+
+love (0.9.1-1) unstable; urgency=medium
+
+  [ Miriam Ruiz ]
+  * New upstream release
+    + 0.9.1's API is fully backward compatible with existing 0.9.0 games.
+    + Most of the changes are bug fixes, internal code improvements, and
+    + some API additions and updates to flesh out LÖVE's features,
+    + especially in the love.graphics module.
+    + See http://love2d.org/forums/viewtopic.php?f=3&t=77609
+    + See https://www.love2d.org/wiki/0.9.1
+  * Refreshed patches
+  * Temporarily removed the patches to use Glee from system, as Glee 5.5 is
+    needed for the program to compile.
+
+ -- Miriam Ruiz <miriam@debian.org>  Fri, 11 Apr 2014 08:02:09 +0200
+
+love (0.9.0-1) unstable; urgency=low
+
+  [ Miriam Ruiz ]
+  * New upstream release
+    + LÖVE 0.9.0 breaks compatibility with nearly every 0.8.0 game (as usual).
+    + Added three new modules: love.window, love.math, and love.system.
+    + Reworked the love.joystick and love.thread modules.
+    + New graphic features, including polygon meshes and vertex shaders.
+    + Integrated the ENet networking library via lua-enet.
+    + Renamed many functions to be more consistent with the rest of the API.
+    + Improved the performance of several APIs in love.graphics.
+    + See the whole list of changes at https://www.love2d.org/wiki/0.9.0
+  * Refreshed patches
+    + New scripts_source.patch obtained from bitbucket.org source code repo
+  * Fixed dependencies
+  * Using dh_autoreconf
+  * Fixed the demos. They new API is not compatible with the old one anymore.
+  * Upgraded Standards-Version from 3.9.4 to 3.9.5
+
+ -- Miriam Ruiz <miriam@debian.org>  Sat, 11 Jan 2014 01:01:36 +0100
+
+love (0.8.0-7) unstable; urgency=medium
+
+  * Team upload.
+  * Add fix-freetype-includes.patch to fix a FTBFS. Closes: #733357
+  * Set urgency to medium due to a fix for a RC bug.
+  * Change libtiff4-dev and libpng12-dev to libtiff-dev and libpng-dev.
+    Closes: #723149. Thanks Artur Rona.
+  * Change liblua5.1-expat0 to lua-expat. Closes: #728028. Thanks Micah Gersten.
+  * Enable hardening also for C++ code.
+
+ -- Juhani Numminen <juhaninumminen0@gmail.com>  Wed, 01 Jan 2014 11:59:47 +0200
+
+love (0.8.0-6) unstable; urgency=low
+
+  * Fixed stupid error, /usr/share/binfmts/love was not installed
+
+ -- Miriam Ruiz <miriam@debian.org>  Thu, 15 Aug 2013 23:25:43 +0200
+
+love (0.8.0-5) unstable; urgency=low
+
+  [ Evgeni Golov ]
+  * Correct Vcs-* URLs to point to anonscm.debian.org
+
+  [ Miriam Ruiz ]
+  * Upgraded Standards-Version from 3.9.3 to 3.9.4
+  * Changed my email address to miriam@debian.org
+
+ -- Miriam Ruiz <miriam@debian.org>  Thu, 15 Aug 2013 19:12:56 +0200
+
+love (0.8.0-4) experimental; urgency=low
+
+  * Team upload.
+  * Update Vcs-Browser control file field.
+  * If binfmt-tools is installed, associate .love files with
+    /usr/bin/love. Closes: #628438.
+  * Lintian override for mention of LGPL in copyright file.
+  * Lintian override for /usr/bin/love in .desktop file.
+  * Call dh_lintian to install the overrides.
+  * Don't ship a duplicate changelog at changes.txt.gz
+
+ -- Jonathan Dowland <jmtd@debian.org>  Thu, 21 Feb 2013 23:05:10 +0000
+
+love (0.8.0-3) unstable; urgency=low
+
+  * Team upload.
+  * Add glee-dev to Build-Depends. Closes: #690871
+
+ -- Bas Wijnen <wijnen@debian.org>  Thu, 18 Oct 2012 20:35:56 +0200
+
+love (0.8.0-2) unstable; urgency=low
+
+  * Team upload.
+  * Convert copyright file to machine readable format.
+  * Add copyright information for utf8-cpp. Closes: #690394
+  * Add hardening flags to build rules. Closes: #690494
+  * Replace included GLee with system version. Closes: #690492
+
+ -- Bas Wijnen <wijnen@debian.org>  Sun, 14 Oct 2012 15:01:02 +0200
+
+love (0.8.0-1) unstable; urgency=low
+
+  * New Upstream Release. Closes: #664821
+  * Upgraded Standards-Version from 3.9.2 to 3.9.3
+  * Added libvorbis-dev and glee-dev to Build-Depends. Closes: #672909
+  * Refreshed patches
+  * Removed usage of sng for handling png files in debian/
+  * Tried to removed internal glee, but it doesn't seem to like the system's one
+
+ -- Miriam Ruiz <little_miry@yahoo.es>  Sun, 03 Jun 2012 00:29:52 +0200
+
+love (0.7.2-1) unstable; urgency=low
+
+  * New Upstream Release.
+  * Upgraded Standards-Version from 3.9.1 to 3.9.2
+  * Changed Priority to optional
+  * Divided scripts_source.patch in two:
+    scripts_source.patch and scripts_refresh.patch
+
+ -- Miriam Ruiz <little_miry@yahoo.es>  Tue, 10 May 2011 01:58:46 +0200
+
+love (0.7.1-1) unstable; urgency=low
+
+  * New Upstream Release.
+  * Don't show LÖVE in the application's menu
+
+ -- Miriam Ruiz <little_miry@yahoo.es>  Sat, 28 Aug 2010 22:14:18 +0200
+
+love (0.6.2-1) experimental; urgency=low
+
+  [ Miriam Ruiz ]
+  * New Upstream Release.
+  * Upgraded Standards-Version from 3.8.1 to 3.9.1
+  * Added build dependencies: pkg-config, libmpg123-dev, libopenal-dev,
+    libflac++-dev, libmng-dev, libmodplug-dev, libxpm-dev, libxcursor-dev,
+    libxxf86vm-dev, libtiff4-dev, libpng12-dev
+  * Refreshed gcc-4.4.patch and removed the rest of patches
+  * Added support for alternatives, so that different versions of löve can
+    co-exist in the system
+  * Changed source format to 3.0 (native)
+
+ -- Miriam Ruiz <little_miry@yahoo.es>  Wed, 25 Aug 2010 05:06:09 +0200
+
+love (0.5.0-2) unstable; urgency=low
+
+  [ Miriam Ruiz ]
+  * Fix FTBFS but in gcc 4.4. Closes: #505703.
+    Thanks to Martin Michlmayr.
+
+ -- Gonéri Le Bouder <goneri@rulezlan.org>  Sat, 30 May 2009 00:53:10 +0200
+
+love (0.5.0-1) unstable; urgency=low
+
+  [ Miriam Ruiz ]
+  * New Upstream Release. Closes: #527724
+  * Fixed packages short descriptions
+  * Uses autotools for building now. Added autotools-dev to Build-Depends
+  * Removed package liblove-dev
+  * Upgraded Standards-Version to 3.8.1
+  * Fixed packages sections in debian/control
+  * Added call to dh_desktop in debian/rules
+  * Fixed debian/copyright
+  * Updated documentation
+
+  [ Gonéri Le Bouder ]
+  * add no-ILvoid-type.diff to avoid ILvoid usage since the type is not
+    defined in libdevil anymore
+  * add reference to /usr/share/common-licenses/{BSD,GPL,LGPL} to avoid
+    lintian crying
+  * change Section from game to interpreters to avoid another lintian warning
+
+ -- Miriam Ruiz <little_miry@yahoo.es>  Sat, 02 May 2009 18:24:50 +0200
+
+love (0.4.0-2) unstable; urgency=low
+
+  [ Miriam Ruiz ]
+  * Moved Build-Depends-Indep to Build-Depends. Closes: #503382
+
+ -- Miriam Ruiz <little_miry@yahoo.es>  Sat, 25 Oct 2008 15:30:45 +0200
+
+love (0.4.0-1) unstable; urgency=low
+
+  [ Miriam Ruiz ]
+  * Initial release (Closes: #494955)
+
+ -- Miriam Ruiz <little_miry@yahoo.es>  Sat, 30 Aug 2008 02:50:02 +0200
